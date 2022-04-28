@@ -1,0 +1,23 @@
+.page-title {
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 42px;
+    text-transform: capitalize;
+}
+
+.email {
+    color: var(--primary-color);
+    padding: 0 0 2rem 0;
+}
+
+.email-title {
+    color: #000;
+}
+
+.profile-image-wrapper {
+    width: 400px;
+}
+
+.profile-image {
+    width: 100%;
+}
