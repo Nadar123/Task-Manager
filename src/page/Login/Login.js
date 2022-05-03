@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 // styles
-// import "./Login.css";
+import styled from "styled-components";
 
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isPending, error } = useLogin();
@@ -14,7 +14,7 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="auth-form">
+    <AuthForm onSubmit={handleSubmit}>
       <h2>Login</h2>
       <label>
         <span>Email:</span>
@@ -41,6 +41,15 @@ export default function Login() {
         </button>
       )}
       {error && <div className="error">{error}</div>}
-    </form>
+    </AuthForm>
   );
 }
+export default Login;
+const AuthForm = styled.form`
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 40px;
+  border: 1px solid #ddd;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  background: #fff;
+`;

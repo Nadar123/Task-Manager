@@ -3,13 +3,13 @@ import { useCollection } from "../../hooks/useCollection";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /*components*/
 import Select from "react-select";
 
 // styles
-import "./Create.css";
+import styled from "styled-components";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -18,12 +18,12 @@ const categories = [
   { value: "marketing", label: "Marketing" },
 ];
 
-export default function Create() {
+function Create() {
   const [users, setUsers] = useState([]);
   const { documents } = useCollection("users");
   const { user } = useAuthContext();
   const { addDocument, response } = useFirestore("projects");
-  const history = useHistory();
+  const navigate = useNavigate();
   // form field values
   const [name, setName] = useState("");
   const [errorName, setErrorName] = useState("");
@@ -95,12 +95,12 @@ export default function Create() {
 
     await addDocument(project);
     if (!response.error) {
-      history.push("/");
+      navigate.push("/");
     }
   };
 
   return (
-    <div className="create-form">
+    <CreateForm>
       <h2 className="page-title">Create a new Project</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -149,6 +149,11 @@ export default function Create() {
 
         <button className="btn">Add Project</button>
       </form>
-    </div>
+    </CreateForm>
   );
 }
+
+export default Create;
+const CreateForm = styled.div`
+  max-width: 600px;
+`;

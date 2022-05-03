@@ -1,28 +1,69 @@
-/*hooks*/
 import { useCollection } from "../../hooks/useCollection";
-/*components*/
+
 import Avatar from "../Avatar/Avatar";
 /*styles*/
-import "./OnlineUsers.css";
+
+import styled from "styled-components";
 
 function OnlineUsers() {
   const { documents, error } = useCollection("users");
 
   return (
-    <div className="user-list">
-      <h2>User List</h2>
+    <UserList>
+      <Title>All Users</Title>
       {error && <div>{error}</div>}
 
       {documents &&
         documents.map((user) => (
-          <div className="user-list-item" key={user.id}>
-            {user.online && <span className="online-user"></span>}
+          <UserListItem key={user.id}>
+            {user.online && <OnLineUsers></OnLineUsers>}
             <span>{user.displayName}</span>
             <Avatar src={user.photoURL} />
-          </div>
+          </UserListItem>
         ))}
-    </div>
+    </UserList>
   );
 }
 
 export default OnlineUsers;
+
+const UserList = styled.div`
+  width: 250px;
+  min-width: 250px;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #fbfbfb;
+  color: var(--heading-color);
+  .avatar {
+    margin-left: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+`;
+
+const Title = styled.h2`
+  text-align: right;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 1.2em;
+`;
+const UserListItem = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 2rem auto;
+  span {
+    text-transform: capitalize;
+  }
+`;
+
+const OnLineUsers = styled.span`
+  display: inline-block;
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+  background: #0ebb50;
+  border-radius: 50%;
+  margin-top: 2px;
+`;

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 
 // styles
-import "./Signup.css";
+import styled from "styled-components";
 
-export default function Signup() {
+function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -39,7 +39,7 @@ export default function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="auth-form">
+    <AuthFormStyled onSubmit={handleSubmit} className="auth-form">
       <h2>sign up</h2>
       <label>
         <span>email:</span>
@@ -80,6 +80,17 @@ export default function Signup() {
         </button>
       )}
       {error && <div className="error">{error}</div>}
-    </form>
+    </AuthFormStyled>
   );
 }
+
+export default Signup;
+
+const AuthFormStyled = styled.form`
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 40px;
+  border: 1px solid #ddd;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  background: #fff;
+`;

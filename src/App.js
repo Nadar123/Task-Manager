@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 /*pages*/
@@ -13,58 +13,66 @@ import NavBar from "./components/Layout/NavBar/NavBar";
 import SideBar from "./components/Layout/SideBar/SideBar";
 import OnlineUsers from "./components/OnlineUsers/OnlineUsers";
 /*styles*/
-import "./App.css";
+import styled from "styled-components";
 
 function App() {
   const { authIsReady, user } = useAuthContext();
 
   return (
-    <div className="App">
+    <AppWrapper>
       {authIsReady && (
         <BrowserRouter>
           {user && <SideBar />}
-          <div className="container">
+          <AppContainer>
             <NavBar />
-            <Switch>
-              <Route exact path="/">
-                {!user && <Redirect to="/login" />}
-                {user && <Dashboard />}
-              </Route>
-              <Route path="/create">
-                {!user && <Redirect to="/login" />}
-                {user && <Create />}
-              </Route>
-              <Route path="/projects/:id">
-                {!user && <Redirect to="/login" />}
-                {user && <Project />}
-              </Route>
-              <Route path="/profile">
-                {!user && <Redirect to="/login" />}
-                {user && <ProfilePage />}
-              </Route>
-              <Route path="/login">
-                {user && <Redirect to="/" />}
-                {!user && <Login />}
-              </Route>
-              <Route path="/signup">
-                {user && <Redirect to="/" />}
-                {!user && <Signup />}
-              </Route>
-            </Switch>
-          </div>
+            <Routes>
+              <Route
+                path="/"
+                element={user ? <Dashboard /> : <Navigate to="/login" />}
+              />
+              {/* {!user && <Navigate to="/login" />}
+                {user && <Dashboard />} */}
+
+              <Route
+                path="/create"
+                element={user ? <Create /> : <Navigate to="/login" />}
+              />
+
+              <Route
+                path="/projects/:id"
+                element={user ? <Project /> : <Navigate to="/login" />}
+              />
+
+              <Route
+                path="/profile"
+                element={user ? <ProfilePage /> : <Navigate to="/login" />}
+              />
+
+              <Route
+                path="/login"
+                element={user ? <Navigate to="/" /> : <Login />}
+              />
+
+              <Route
+                path="/signup"
+                element={user ? <Navigate to="/" /> : <Signup />}
+              />
+            </Routes>
+          </AppContainer>
           {user && <OnlineUsers />}
         </BrowserRouter>
       )}
-    </div>
+    </AppWrapper>
   );
 }
 
 export default App;
 
-// const AppWrapper = styled.div`
-//   /* display: flex; */
-// `;
+const AppWrapper = styled.div`
+  display: flex;
+`;
 
-// const AppContainer = styled.div`
-//   padding: 0 60px;
-// `;
+const AppContainer = styled.div`
+  flex-grow: 1;
+  padding: 0 60px;
+`;
