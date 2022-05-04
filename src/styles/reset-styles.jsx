@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
 /* base styles */
 
 body {
-    font-family: Poppins, sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     font-size: 1.1em;
     background: var(--bg-color);

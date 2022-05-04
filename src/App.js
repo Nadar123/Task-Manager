@@ -74,5 +74,5 @@ const AppWrapper = styled.div`
 
 const AppContainer = styled.div`
   flex-grow: 1;
-  padding: 0 60px;
+  padding: 0 60px 60px 60px;
 `;
