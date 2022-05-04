@@ -137,13 +137,3 @@ const CommentContent = styled.div`
     padding: 2rem 0 0 0;
   }
 `;
-
-// .comment-date {
-//   padding: 10px 0 1rem 0;
-// }
-
-// .comment-content {
-//   background-color: #fff;
-//   padding: 1rem;
-//   border-radius: 4px;
-// }

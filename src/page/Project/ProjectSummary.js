@@ -130,18 +130,3 @@ const User = styled.div`
     font-size: 14px;
   }
 `;
-
-// .project-summary+.btn {
-//   margin: 0px;
-// }
-
-// .created-by {
-//   display: flex;
-//   align-items: baseline;
-//   padding: 0rem 0 1rem 0;
-// }
-
-// .ceartion-date {
-//   font-size: 14px;
-//   padding: 0 0 10px 0;
-// }
