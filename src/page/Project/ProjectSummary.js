@@ -14,7 +14,7 @@ function ProjectSummary({ project }) {
 
   const handleDelete = () => {
     deleteDocument(project.id);
-    navigate.push("/");
+    navigate("/");
   };
   return (
     <>

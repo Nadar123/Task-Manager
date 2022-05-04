@@ -95,7 +95,7 @@ function Create() {
 
     await addDocument(project);
     if (!response.error) {
-      navigate.push("/");
+      navigate("/");
     }
   };
 
