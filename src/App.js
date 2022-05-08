@@ -30,8 +30,6 @@ function App() {
                 path="/"
                 element={user ? <Dashboard /> : <Navigate to="/login" />}
               />
-              {/* {!user && <Navigate to="/login" />}
-                {user && <Dashboard />} */}
 
               <Route
                 path="/create"

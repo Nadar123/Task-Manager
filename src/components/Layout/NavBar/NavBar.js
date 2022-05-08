@@ -10,25 +10,28 @@ import styled from "styled-components";
 
 function NavBar() {
   const { user } = useAuthContext();
-  const { logout, isPending } = useLogout();
+  const { logout } = useLogout();
   return (
     <NavBarStyled>
       <NavList>
-        <Logo>
-          <LogoImage src={Task} alt="" />
-          <span>Task Manager</span>
-        </Logo>
+        <NavLink>
+          <Link to="/">
+            <LogoInnerWrapper>
+              <LogoImage src={Task} alt="" />
+              <span>Task Manager</span>
+            </LogoInnerWrapper>
+          </Link>
+        </NavLink>
         {!user && (
           <>
-            <NavLink className="nav-link">
+            <NavLink>
               <Link to="/login">Login</Link>
             </NavLink>
-            <NavLink className="nav-link">
+            <NavLink>
               <Link to="/signup">Signup</Link>
             </NavLink>
           </>
         )}
-
         <li>
           {user && (
             <>
@@ -55,18 +58,12 @@ const NavList = styled.ul`
   display: flex;
   margin: 0 auto;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
-
-const Logo = styled.li`
-  font-weight: bold;
-  color: var(--heading-color);
-  letter-spacing: 1px;
+const LogoInnerWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-right: auto;
 `;
-
 const LogoImage = styled.img`
   margin-right: 10px;
   width: 25px;

@@ -28,6 +28,9 @@ function OnlineUsers() {
 export default OnlineUsers;
 
 const UserList = styled.div`
+  /* position: fixed;
+  top: 0;
+  right: 0; */
   width: 250px;
   min-width: 250px;
   padding: 30px;
