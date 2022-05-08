@@ -14,14 +14,12 @@ function NavBar() {
   return (
     <NavBarStyled>
       <NavList>
-        <NavLink>
+        <Logo>
           <Link to="/">
-            <LogoInnerWrapper>
-              <LogoImage src={Task} alt="" />
-              <span>Task Manager</span>
-            </LogoInnerWrapper>
+            <LogoImage src={Task} alt="" />
+            <span>Task Manager</span>
           </Link>
-        </NavLink>
+        </Logo>
         {!user && (
           <>
             <NavLink>
@@ -58,12 +56,26 @@ const NavList = styled.ul`
   display: flex;
   margin: 0 auto;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
-const LogoInnerWrapper = styled.div`
+const Logo = styled.li`
+  font-weight: bold;
+  color: var(--heading-color);
+  letter-spacing: 1px;
   display: flex;
   align-items: center;
+  margin-right: auto;
+  a {
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    &:hover {
+      color: #000;
+    }
+  }
 `;
+
 const LogoImage = styled.img`
   margin-right: 10px;
   width: 25px;
